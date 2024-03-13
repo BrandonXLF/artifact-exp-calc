@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { makeId } from '$lib/id';
 	import Icon from './icon.svelte';
+	import LabelContentGrid from './label-content-grid.svelte';
 	import Number from './number.svelte';
 
 	export let exp = 0;
@@ -16,7 +17,7 @@
 	}
 </script>
 
-<div class="inline-grid grid-cols-label-content items-center gap-2 leading-4">
+<LabelContentGrid>
 	<label for={essenceId} class="text-right">
 		<Icon alt="Essence" src="essence.png" />
 	</label>
@@ -27,4 +28,4 @@
 	<input id={unctionId} type="number" bind:value={unction} min="0" max="9999" on:change={setExp} />
 	<div class="text-right">=</div>
 	<Number number={exp} unit="exp" />
-</div>
+</LabelContentGrid>

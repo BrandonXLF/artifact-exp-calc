@@ -8,6 +8,7 @@
 	import InfoIcon from './info-icon.svelte';
 	import { createPopperActions } from 'svelte-popperjs';
 	import { makeId } from '$lib/id';
+	import LabelContentGrid from './label-content-grid.svelte';
 
 	let requiredWC: number;
 	export { requiredWC as baseRequired };
@@ -29,28 +30,20 @@
 </script>
 
 <Cell title={waste ? 'Excess' : 'Required'} titleClass={waste ? 'text-red-400' : ''}>
-	<div>
-		<div>
-			<span>
-				<abbr title="Including 2x and 5x enhancements">Avg</abbr>:
-			</span>
-			<span>
-				<Number number={requiredAvg} unit="exp" />
-				≈
-				<Resin requiredRuns={requiredRunsAvg} />
-			</span>
-		</div>
-		<div>
-			<span>
-				<abbr title="Worst-case (no bonuses)">WC</abbr>:
-			</span>
-			<span>
-				<Number number={requiredWC} unit="exp" />
-				≈
-				<Resin requiredRuns={requiredRunsWC} />
-			</span>
-		</div>
-	</div>
+	<LabelContentGrid>
+		<span title="Including 2x and 5x enhancements">Average</span>
+		<span>
+			<Number number={requiredAvg} unit="exp" />
+			≈
+			<Resin requiredRuns={requiredRunsAvg} />
+		</span>
+		<span>x1 Only</span>
+		<span>
+			<Number number={requiredWC} unit="exp" />
+			≈
+			<Resin requiredRuns={requiredRunsWC} />
+		</span>
+	</LabelContentGrid>
 </Cell>
 
 <div class="flex flex-col items-center">

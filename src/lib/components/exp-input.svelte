@@ -5,6 +5,7 @@
 	import Number from '$lib/components/number.svelte';
 	import { makeId } from '$lib/id';
 	import CloseIcon from './close-icon.svelte';
+	import LabelContentGrid from './label-content-grid.svelte';
 
 	export let exp = 0;
 	export let times = 1;
@@ -22,7 +23,7 @@
 	$: [level, remainder] = calcLevelAndRemainder(exp, rarity);
 </script>
 
-<div class="grid grid-cols-label-content items-center gap-2 leading-4">
+<LabelContentGrid>
 	{#if !noRaritySet}
 		<label for={exportId} class="text-right">Rarity</label>
 		<select id={exportId} bind:value={rarity}>
@@ -78,4 +79,4 @@
 			</button>
 		</div>
 	{/if}
-</div>
+</LabelContentGrid>

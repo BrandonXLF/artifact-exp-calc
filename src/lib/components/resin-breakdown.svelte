@@ -33,8 +33,8 @@
 		<tr>
 			<th></th>
 			<th></th>
-			<th>Avg</th>
-			<th>WC</th>
+			<th>Average</th>
+			<th>x1 Only</th>
 		</tr>
 		{#each DOMAIN_RARITIES as rarity}
 			<tr>
