@@ -21,6 +21,7 @@
 		use: { 3: true, 4: true, 5: false }
 	} satisfies ResinInfo;
 	let showResinInfo = false;
+	let mouseEnterTick = false;
 
 	$: requiredAvg = requiredWC / AVERAGE_BONUS;
 	$: requiredRunsAvg = calcRunsRequired(requiredAvg, resinInfo);
@@ -62,8 +63,17 @@
 			aria-expanded={showResinInfo ? 'true' : 'false'}
 			aria-controls={showResinInfo ? popperId : undefined}
 			class="rounded-lg border border-solid border-light bg-secondary p-2"
-			on:click={() => (showResinInfo = !showResinInfo)}
-			on:mouseenter={() => (showResinInfo = true)}
+			on:click={() => {
+				if (!mouseEnterTick) {
+					showResinInfo = !showResinInfo;
+				}
+			}}
+			on:mouseenter={(e) => {
+				showResinInfo = true;
+
+				mouseEnterTick = true;
+				setTimeout(() => (mouseEnterTick = false));
+			}}
 		>
 			<InfoIcon />
 		</button>
