@@ -79,7 +79,11 @@
 					modifiers: [{ name: 'offset', options: { offset: [0, 10] } }]
 				}}
 			>
-				<Cell title="Resin Breakdown">
+				<Cell
+					title="Resin Breakdown"
+					titleClass="drop-shadow-popover"
+					cellClass="drop-shadow-popover"
+				>
 					<ResinBreakdown bind:resinInfo {requiredRunsAvg} {requiredRunsWC} />
 				</Cell>
 			</div>
