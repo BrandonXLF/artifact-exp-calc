@@ -30,7 +30,9 @@
 <Cell title={waste ? 'Excess' : 'Required'} titleClass={waste ? 'text-red-400' : ''}>
 	<div>
 		<div>
-			<span>Avg:</span>
+			<span>
+				<abbr title="Including 2x and 5x enhancements">Avg</abbr>:
+			</span>
 			<span>
 				<Number number={requiredAvg} unit="exp" />
 				≈
@@ -39,7 +41,7 @@
 		</div>
 		<div>
 			<span>
-				<abbr title="Worst-case">WC</abbr>:
+				<abbr title="Worst-case (no bonuses)">WC</abbr>:
 			</span>
 			<span>
 				<Number number={requiredWC} unit="exp" />
