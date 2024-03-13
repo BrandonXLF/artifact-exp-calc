@@ -70,7 +70,7 @@
 	<div class="text-right">=</div>
 	<Number number={exp} unit="exp" />
 	{#if showTimes}
-		<div class="text-right">&times;</div>
+		<div class="text-right text-lg">&times;</div>
 		<div class="flex gap-2">
 			<input bind:value={times} type="number" min="0" class="w-12" />
 			<button title="Remove" class="text-red-300" on:click={() => dispatch('delete')}>
