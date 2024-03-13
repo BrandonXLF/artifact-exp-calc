@@ -61,7 +61,7 @@
 					showResinInfo = !showResinInfo;
 				}
 			}}
-			on:mouseenter={(e) => {
+			on:mouseenter={() => {
 				showResinInfo = true;
 
 				mouseEnterTick = true;
