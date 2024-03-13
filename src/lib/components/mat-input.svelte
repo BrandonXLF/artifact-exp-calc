@@ -16,7 +16,7 @@
 	}
 </script>
 
-<div class="inline-grid grid-cols-label-content gap-2 leading-4 items-center">
+<div class="inline-grid grid-cols-label-content items-center gap-2 leading-4">
 	<label for={essenceId} class="text-right">
 		<Icon alt="Essence" src="essence.png" />
 	</label>

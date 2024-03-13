@@ -22,7 +22,7 @@
 	$: [level, remainder] = calcLevelAndRemainder(exp, rarity);
 </script>
 
-<div class="grid grid-cols-label-content gap-2 leading-4 items-center">
+<div class="grid grid-cols-label-content items-center gap-2 leading-4">
 	{#if !noRaritySet}
 		<label for={exportId} class="text-right">Rarity</label>
 		<select id={exportId} bind:value={rarity}>
