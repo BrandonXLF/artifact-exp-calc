@@ -34,10 +34,15 @@
 	select,
 	input[type='number'] {
 		@apply px-1;
-		@apply py-px;
+		@apply py-0.5;
 		@apply border;
 		@apply border-light;
 		@apply rounded-md;
+		@apply bg-input;
+	}
+
+	button {
+		@apply border-none;
 	}
 
 	h3 {

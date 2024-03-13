@@ -12,7 +12,7 @@
 	<div
 		class:border={!noStyle}
 		class:border-extra-light={!noStyle}
-		class:bg-bg={!noStyle}
+		class:bg-secondary={!noStyle}
 		class:p-2={!noStyle}
 		class:rounded-lg={!noStyle}
 		class:flex-1={fullHeight}

@@ -20,7 +20,7 @@
 	<div class="flex items-center">
 		<button
 			title="Add Fodder"
-			class="rounded-lg border border-light bg-bg p-2"
+			class="rounded-lg border border-solid border-light bg-secondary p-2"
 			on:click={() => (fodderList = [...fodderList, [0, 4, 1]])}
 		>
 			<AddIcon />

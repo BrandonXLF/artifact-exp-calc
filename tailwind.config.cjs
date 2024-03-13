@@ -6,7 +6,8 @@ const config = {
 		extend: {
 			colors: {
 				main: '#222',
-				bg: '#333'
+				secondary: '#333',
+				input: '#282828'
 			},
 			gridTemplateColumns: {
 				'label-content': 'max-content 1fr'

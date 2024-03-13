@@ -59,7 +59,7 @@
 			aria-label="Toggle resin breakdown"
 			aria-expanded={showResinInfo ? 'true' : 'false'}
 			aria-controls={showResinInfo ? popperId : undefined}
-			class="rounded-lg border border-light bg-bg p-2"
+			class="rounded-lg border border-solid border-light bg-secondary p-2"
 			on:click={() => (showResinInfo = !showResinInfo)}
 			on:mouseenter={() => (showResinInfo = true)}
 		>
