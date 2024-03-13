@@ -1,0 +1,48 @@
+@tailwind base;
+
+@layer base {
+	html {
+		line-height: 1;
+	}
+
+	body {
+		@apply bg-main;
+		@apply text-white;
+		@apply [color-scheme:dark];
+		@apply m-4;
+	}
+
+	main {
+		line-height: 1.5;
+	}
+
+	a {
+		@apply text-blue-300;
+	}
+
+	a:focus,
+	a:hover {
+		@apply underline;
+	}
+
+	summary {
+		@apply cursor-pointer;
+		@apply select-none;
+	}
+
+	select,
+	input[type='number'] {
+		@apply px-1;
+		@apply py-px;
+		@apply border;
+		@apply border-light;
+		@apply rounded-md;
+	}
+
+	h3 {
+		@apply mb-2;
+	}
+}
+
+@tailwind components;
+@tailwind utilities;
