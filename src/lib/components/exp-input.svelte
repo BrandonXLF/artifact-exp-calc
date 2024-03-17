@@ -51,7 +51,7 @@
 	{#if !noRemainder}
 		<label for={expId} class="text-right">EXP</label>
 		{#if readOnly}
-			<span>
+			<span class="whitespace-nowrap">
 				<Number number={remainder} />
 				/
 				<Number number={EXP_MAXES[rarity][level]} />
