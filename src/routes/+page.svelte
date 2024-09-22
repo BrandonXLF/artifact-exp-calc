@@ -9,7 +9,6 @@
 	import FodderInput from '$lib/components/fodder-input.svelte';
 	import RequiredCells from '$lib/components/required-cells.svelte';
 	import Bottom from '$lib/components/bottom.svelte';
-	import InfoIcon from '$lib/components/info-icon.svelte';
 
 	let fodderList: Fodder[] = [];
 	let currentExp = 0;
@@ -36,7 +35,7 @@
 			<MatInput bind:exp={matExp} />
 		</Cell>
 		<VSep />
-		<Cell title="Fodder" fullHeight noStyle>
+		<Cell title="Fodder / Salvage" fullHeight noStyle>
 			<FodderInput bind:fodderList />
 		</Cell>
 	</Row>
