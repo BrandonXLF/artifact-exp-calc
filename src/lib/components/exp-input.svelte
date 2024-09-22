@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { calcLevelAndRemainder } from '$lib/exp-calcs';
+	import { calcFodderExp, calcLevelAndRemainder } from '$lib/exp-calcs';
 	import { EXP_AMOUNTS, EXP_MAXES, LEVEL_MAXES } from '$lib/data';
 	import { createEventDispatcher } from 'svelte';
 	import Number from '$lib/components/number.svelte';
@@ -14,6 +14,7 @@
 	export let noRaritySet = false;
 	export let readOnly = false;
 	export let showTimes = false;
+	export let isFodder = false;
 
 	const dispatch = createEventDispatcher();
 	const exportId = makeId();
@@ -33,6 +34,7 @@
 			<option value={4}>4</option>
 			<option value={5}>5</option>
 		</select>
+		<hr class="col-span-2" />
 	{/if}
 	<label for={levelId} class="text-right">Level</label>
 	{#if readOnly}
@@ -70,6 +72,13 @@
 	{/if}
 	<div class="text-right">=</div>
 	<Number number={exp} unit="exp" />
+	{#if !noRaritySet && (isFodder || showTimes)}
+		<hr class="col-span-2" />
+	{/if}
+	{#if isFodder}
+		<div class="text-right">Value</div>
+		<Number number={calcFodderExp(exp, rarity)} unit="exp" />
+	{/if}
 	{#if showTimes}
 		<div class="text-right text-lg">&times;</div>
 		<div class="flex gap-2">

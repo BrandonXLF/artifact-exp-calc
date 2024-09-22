@@ -14,7 +14,14 @@
 <div class="flex h-full gap-4">
 	{#each fodderList as [exp, rarity, times], i}
 		<Cell>
-			<ExpInput bind:exp bind:rarity bind:times showTimes on:delete={() => deleteFodder(i)} />
+			<ExpInput
+				bind:exp
+				bind:rarity
+				bind:times
+				showTimes
+				isFodder
+				on:delete={() => deleteFodder(i)}
+			/>
 		</Cell>
 	{/each}
 	<div class="flex items-center">
