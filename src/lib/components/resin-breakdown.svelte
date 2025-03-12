@@ -29,28 +29,32 @@
 			</select>
 		</label>
 	</div>
-	<table class="text-right [&>tr>:not(:first-child)]:pl-3">
-		<tr>
-			<th></th>
-			<th></th>
-			<th>Average</th>
-			<th>x1 Only</th>
-		</tr>
-		{#each DOMAIN_RARITIES as rarity}
+	<table class="text-right [&>*>tr>:not(:first-child)]:pl-3">
+		<thead>
 			<tr>
-				<td><input type="checkbox" bind:checked={resinInfo.use[rarity]} /></td>
-				<td>{rarity}-star</td>
-				<td>
-					{#if resinInfo.use[rarity]}
-						<Number number={requiredArtifacts[rarity].avg} decimals={1} />
-					{:else}-{/if}
-				</td>
-				<td>
-					{#if resinInfo.use[rarity]}
-						<Number number={requiredArtifacts[rarity].wc} decimals={1} />
-					{:else}-{/if}
-				</td>
+				<th></th>
+				<th></th>
+				<th>Average</th>
+				<th>x1 Only</th>
 			</tr>
-		{/each}
+		</thead>
+		<tbody>
+			{#each DOMAIN_RARITIES as rarity}
+				<tr>
+					<td><input type="checkbox" bind:checked={resinInfo.use[rarity]} /></td>
+					<td>{rarity}-star</td>
+					<td>
+						{#if resinInfo.use[rarity]}
+							<Number number={requiredArtifacts[rarity].avg} decimals={1} />
+						{:else}-{/if}
+					</td>
+					<td>
+						{#if resinInfo.use[rarity]}
+							<Number number={requiredArtifacts[rarity].wc} decimals={1} />
+						{:else}-{/if}
+					</td>
+				</tr>
+			{/each}
+		</tbody>
 	</table>
 </div>
