@@ -21,6 +21,35 @@
 	const levelId = makeId();
 	const expId = makeId();
 
+	function setExp(level: number, extraExp: number, capExtra = false) {
+		const maxLevel = LEVEL_MAXES[rarity];
+
+		if (level > maxLevel) {
+			level = maxLevel;
+		}
+
+		if (capExtra) {
+			let maxExtra = EXP_MAXES[rarity][level];
+
+			if (maxExtra > 0) {
+				maxExtra--;
+			}
+
+			extraExp = Math.min(extraExp, maxExtra);
+		}
+
+		const inputExp = EXP_AMOUNTS[rarity][level] + extraExp;
+		const maxExp = EXP_AMOUNTS[rarity][LEVEL_MAXES[rarity]];
+
+		exp = Math.min(inputExp, maxExp);
+	}
+	
+	function maintainLevel() {
+		if (level === undefined) return;
+		setExp(level, remainder, true);
+	}
+
+	$: rarity, maintainLevel();
 	$: [level, remainder] = calcLevelAndRemainder(exp, rarity);
 </script>
 
@@ -47,7 +76,7 @@
 			min="0"
 			max={LEVEL_MAXES[rarity]}
 			readonly={readOnly}
-			on:change={(e) => (exp = EXP_AMOUNTS[rarity][e.currentTarget.valueAsNumber] + remainder)}
+			on:change={(e) => setExp(e.currentTarget.valueAsNumber, remainder, true)}
 		/>
 	{/if}
 	{#if !noRemainder}
@@ -66,7 +95,7 @@
 				min="0"
 				max={EXP_MAXES[rarity][level]}
 				readonly={readOnly}
-				on:change={(e) => (exp = EXP_AMOUNTS[rarity][level] + e.currentTarget.valueAsNumber)}
+				on:change={(e) => setExp(level, e.currentTarget.valueAsNumber)}
 			/>
 		{/if}
 	{/if}
