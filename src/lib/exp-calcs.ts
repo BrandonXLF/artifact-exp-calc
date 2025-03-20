@@ -32,7 +32,7 @@ export function calcRunsRequired(exp: number, { domainLevel, use }: ResinInfo) {
 
 export function calcLevelAndRemainder(exp: number, rarity: Rarity): [number, number] {
 	let start = 0;
-	let end = EXP_AMOUNTS[rarity].length;
+	let end: number = EXP_AMOUNTS[rarity].length;
 
 	while (end - start > 1) {
 		const currentIndex = Math.floor((start + end) / 2);
@@ -50,5 +50,5 @@ export function calcLevelAndRemainder(exp: number, rarity: Rarity): [number, num
 }
 
 export function calcMaxExp(rarity: Rarity) {
-	return EXP_AMOUNTS[rarity][LEVEL_MAXES[rarity]];
+	return EXP_AMOUNTS[rarity][LEVEL_MAXES[rarity]]!;
 }

@@ -1,7 +1,13 @@
 export const FODDER_EXP_VALUE = 0.8;
 export const AVERAGE_BONUS = 1.13;
 
-export const EXP_AMOUNTS = {
+type LevelValues<L extends number, T extends number[] = []> =  T extends { length: L } ? [number, ...T] : LevelValues<L, [...T, number]>;
+
+type RarityLevelValues = {
+	[K in Rarity]: LevelValues<typeof LEVEL_MAXES[K]>
+};
+
+export const EXP_AMOUNTS: RarityLevelValues = {
 	5: [
 		0, 3000, 6725, 11150, 16300, 22200, 28875, 36375, 44725, 53950, 64075, 75125, 87150, 100175,
 		115325, 132925, 153300, 176800, 203850, 234900, 270475
@@ -15,7 +21,7 @@ export const EXP_AMOUNTS = {
 	1: [0, 600, 1350, 2225, 3250]
 };
 
-export const EXP_MAXES = {
+export const EXP_MAXES: RarityLevelValues = {
 	5: [
 		3000, 3725, 4425, 5150, 5900, 6675, 7500, 8350, 9225, 10125, 11050, 12025, 13025, 15150, 17600,
 		20375, 23500, 27050, 31050, 35575, 0
@@ -29,7 +35,7 @@ export const EXP_MAXES = {
 	1: [600, 750, 875, 1025, 0]
 };
 
-export const EXP_BASES = {
+export const EXP_BASES: Record<Rarity, number> = {
 	1: 420,
 	2: 840,
 	3: 1260,
@@ -43,9 +49,9 @@ export const LEVEL_MAXES = {
 	3: 12,
 	2: 4,
 	1: 4
-};
+} as const satisfies Record<Rarity, number>;
 
-export const ARTIFACTS_PER_RUN = {
+export const ARTIFACTS_PER_RUN: Record<DomainLevel, Record<DomainRarity, number>> = {
 	1: {
 		3: 6.39,
 		4: 0.71,
