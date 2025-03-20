@@ -55,7 +55,7 @@
 	$: [level, remainder] = calcLevelAndRemainder(exp, rarity);
 	$: expVersion, updateInputs();
 </script>
- 
+
 <LabelContentGrid>
 	{#if !noRaritySet}
 		<label for={exportId} class="text-right">Rarity</label>
@@ -66,7 +66,7 @@
 			<option value={4}>4</option>
 			<option value={5}>5</option>
 		</select>
-		<hr class="border-t col-span-2" />
+		<hr class="col-span-2 border-t" />
 	{/if}
 	<label for={levelId} class="text-right">Level</label>
 	{#if readOnly}
@@ -107,7 +107,7 @@
 	<div class="text-right">=</div>
 	<Number number={exp} unit="exp" />
 	{#if !noRaritySet && (isFodder || showTimes)}
-		<hr class="border-t col-span-2" />
+		<hr class="col-span-2 border-t" />
 	{/if}
 	{#if isFodder}
 		<div class="text-right">Value</div>

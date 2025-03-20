@@ -1,10 +1,12 @@
 export const FODDER_EXP_VALUE = 0.8;
 export const AVERAGE_BONUS = 1.13;
 
-type LevelValues<L extends number, T extends number[] = []> =  T extends { length: L } ? [number, ...T] : LevelValues<L, [...T, number]>;
+type LevelValues<L extends number, T extends number[] = []> = T extends { length: L }
+	? [number, ...T]
+	: LevelValues<L, [...T, number]>;
 
 type RarityLevelValues = {
-	[K in Rarity]: LevelValues<typeof LEVEL_MAXES[K]>
+	[K in Rarity]: LevelValues<(typeof LEVEL_MAXES)[K]>;
 };
 
 export const EXP_AMOUNTS: RarityLevelValues = {
