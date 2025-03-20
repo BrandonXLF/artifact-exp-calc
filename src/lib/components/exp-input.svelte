@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { calcFodderExp, calcLevelAndRemainder } from '$lib/exp-calcs';
+	import { calcFodderExp, calcLevelAndRemainder, calcMaxExp } from '$lib/exp-calcs';
 	import { EXP_AMOUNTS, EXP_MAXES, LEVEL_MAXES } from '$lib/data';
 	import { createEventDispatcher } from 'svelte';
 	import Number from '$lib/components/number.svelte';
@@ -15,6 +15,10 @@
 	export let readOnly = false;
 	export let showTimes = false;
 	export let isFodder = false;
+
+	let expVersion = 1;
+	let levelInput: HTMLInputElement | undefined;
+	let remainderInput: HTMLInputElement | undefined;
 
 	const dispatch = createEventDispatcher();
 	const exportId = makeId();
@@ -34,21 +38,28 @@
 
 		const inputExp = EXP_AMOUNTS[rarity][newLevel] + newRemainder;
 		exp = Math.min(inputExp, calcMaxExp(rarity));
-	}
-	
-	function maintainLevel() {
-		if (level === undefined) return;
-		setExp(level, remainder, true);
+
+		expVersion++;
 	}
 
-	$: rarity, maintainLevel();
+	function setRarity(newRarity: Rarity) {
+		rarity = newRarity;
+		setExp(level, remainder, true); // Important: Increments expVersion
+	}
+
+	function updateInputs() {
+		if (levelInput) levelInput.valueAsNumber = level;
+		if (remainderInput) remainderInput.valueAsNumber = remainder;
+	}
+
 	$: [level, remainder] = calcLevelAndRemainder(exp, rarity);
+	$: expVersion, updateInputs();
 </script>
-
+ 
 <LabelContentGrid>
 	{#if !noRaritySet}
 		<label for={exportId} class="text-right">Rarity</label>
-		<select id={exportId} bind:value={rarity}>
+		<select id={exportId} value={rarity} on:change={(e) => setRarity(+e.target.value)}>
 			<option value={1}>1</option>
 			<option value={2}>2</option>
 			<option value={3}>3</option>
@@ -68,6 +79,7 @@
 			min="0"
 			max={LEVEL_MAXES[rarity]}
 			readonly={readOnly}
+			bind:this={levelInput}
 			on:change={(e) => setExp(e.currentTarget.valueAsNumber, remainder, true)}
 		/>
 	{/if}
@@ -87,6 +99,7 @@
 				min="0"
 				max={EXP_MAXES[rarity][level]}
 				readonly={readOnly}
+				bind:this={remainderInput}
 				on:change={(e) => setExp(level, e.currentTarget.valueAsNumber)}
 			/>
 		{/if}
