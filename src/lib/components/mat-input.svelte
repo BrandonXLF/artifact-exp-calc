@@ -2,7 +2,7 @@
 	import { makeId } from '$lib/id';
 	import Icon from './icon.svelte';
 	import LabelContentGrid from './label-content-grid.svelte';
-	import Number from './number.svelte';
+	import NumberDisplay from './number-display.svelte';
 
 	export let exp = 0;
 
@@ -27,5 +27,5 @@
 	</label>
 	<input id={unctionId} type="number" bind:value={unction} min="0" max="9999" on:change={setExp} />
 	<div class="text-right">=</div>
-	<Number number={exp} unit="exp" />
+	<NumberDisplay number={exp} unit="exp" />
 </LabelContentGrid>

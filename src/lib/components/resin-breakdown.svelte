@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { ARTIFACTS_PER_RUN, DOMAIN_RARITIES } from '$lib/data';
-	import Number from '$lib/components/number.svelte';
+	import NumberDisplay from '$lib/components/number-display.svelte';
 
 	export let requiredRunsAvg: number;
 	export let requiredRunsWC: number;
@@ -45,12 +45,12 @@
 					<td>{rarity}-star</td>
 					<td>
 						{#if resinInfo.use[rarity]}
-							<Number number={requiredArtifacts[rarity].avg} decimals={1} />
+							<NumberDisplay number={requiredArtifacts[rarity].avg} decimals={1} />
 						{:else}-{/if}
 					</td>
 					<td>
 						{#if resinInfo.use[rarity]}
-							<Number number={requiredArtifacts[rarity].wc} decimals={1} />
+							<NumberDisplay number={requiredArtifacts[rarity].wc} decimals={1} />
 						{:else}-{/if}
 					</td>
 				</tr>

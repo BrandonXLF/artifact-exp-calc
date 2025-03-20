@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Resin from '$lib/components/resin.svelte';
-	import Number from '$lib/components/number.svelte';
+	import NumberDisplay from '$lib/components/number-display.svelte';
 	import { AVERAGE_BONUS } from '$lib/data';
 	import ResinBreakdown from '$lib/components/resin-breakdown.svelte';
 	import { calcRunsRequired } from '$lib/exp-calcs';
@@ -33,13 +33,13 @@
 	<LabelContentGrid>
 		<span title="Including 2x and 5x enhancements">Average</span>
 		<span>
-			<Number number={requiredAvg} unit="exp" />
+			<NumberDisplay number={requiredAvg} unit="exp" />
 			≈
 			<Resin requiredRuns={requiredRunsAvg} />
 		</span>
 		<span>x1 Only</span>
 		<span>
-			<Number number={requiredWC} unit="exp" />
+			<NumberDisplay number={requiredWC} unit="exp" />
 			≈
 			<Resin requiredRuns={requiredRunsWC} />
 		</span>

@@ -2,7 +2,7 @@
 	import { calcFodderExp, calcLevelAndRemainder, calcMaxExp } from '$lib/exp-calcs';
 	import { EXP_AMOUNTS, EXP_MAXES, LEVEL_MAXES } from '$lib/data';
 	import { createEventDispatcher } from 'svelte';
-	import Number from '$lib/components/number.svelte';
+	import NumberDisplay from '$lib/components/number-display.svelte';
 	import { makeId } from '$lib/id';
 	import CloseIcon from './close-icon.svelte';
 	import LabelContentGrid from './label-content-grid.svelte';
@@ -70,7 +70,7 @@
 	{/if}
 	<label for={levelId} class="text-right">Level</label>
 	{#if readOnly}
-		<Number number={level} />
+		<NumberDisplay number={level} />
 	{:else}
 		<input
 			id={levelId}
@@ -87,9 +87,9 @@
 		<label for={expId} class="text-right">EXP</label>
 		{#if readOnly}
 			<span class="whitespace-nowrap">
-				<Number number={remainder} />
+				<NumberDisplay number={remainder} />
 				/
-				<Number number={EXP_MAXES[rarity][level]} />
+				<NumberDisplay number={EXP_MAXES[rarity][level]} />
 			</span>
 		{:else}
 			<input
@@ -105,13 +105,13 @@
 		{/if}
 	{/if}
 	<div class="text-right">=</div>
-	<Number number={exp} unit="exp" />
+	<NumberDisplay number={exp} unit="exp" />
 	{#if !noRaritySet && (isFodder || showTimes)}
 		<hr class="col-span-2 border-t" />
 	{/if}
 	{#if isFodder}
 		<div class="text-right">Value</div>
-		<Number number={calcFodderExp(exp, rarity)} unit="exp" />
+		<NumberDisplay number={calcFodderExp(exp, rarity)} unit="exp" />
 	{/if}
 	{#if showTimes}
 		<div class="text-right text-lg">&times;</div>
