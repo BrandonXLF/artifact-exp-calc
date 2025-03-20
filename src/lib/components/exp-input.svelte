@@ -21,27 +21,19 @@
 	const levelId = makeId();
 	const expId = makeId();
 
-	function setExp(level: number, extraExp: number, capExtra = false) {
+	function setExp(newLevel: number, newRemainder: number, capRemainder = false) {
 		const maxLevel = LEVEL_MAXES[rarity];
+		if (newLevel > maxLevel) newLevel = maxLevel;
 
-		if (level > maxLevel) {
-			level = maxLevel;
+		if (capRemainder) {
+			let maxExtra = EXP_MAXES[rarity][newLevel];
+			if (maxExtra > 0) maxExtra--;
+
+			newRemainder = Math.min(newRemainder, maxExtra);
 		}
 
-		if (capExtra) {
-			let maxExtra = EXP_MAXES[rarity][level];
-
-			if (maxExtra > 0) {
-				maxExtra--;
-			}
-
-			extraExp = Math.min(extraExp, maxExtra);
-		}
-
-		const inputExp = EXP_AMOUNTS[rarity][level] + extraExp;
-		const maxExp = EXP_AMOUNTS[rarity][LEVEL_MAXES[rarity]];
-
-		exp = Math.min(inputExp, maxExp);
+		const inputExp = EXP_AMOUNTS[rarity][newLevel] + newRemainder;
+		exp = Math.min(inputExp, calcMaxExp(rarity));
 	}
 	
 	function maintainLevel() {
