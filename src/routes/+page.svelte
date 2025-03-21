@@ -9,6 +9,7 @@
 	import FodderInput from '$lib/components/fodder-input.svelte';
 	import RequiredCells from '$lib/components/required-cells.svelte';
 	import Bottom from '$lib/components/bottom.svelte';
+	import LevelExpTable from '$lib/components/level-exp-table.svelte';
 
 	let fodderList: Fodder[] = [];
 	let currentExp = 0;
@@ -38,6 +39,16 @@
 		<Cell title="Fodder / Salvage" fullHeight noStyle>
 			<FodderInput bind:fodderList />
 		</Cell>
+	</Row>
+	<Row noSep>
+		<details>
+			<summary>Show EXP at each level</summary>
+			<div class="mt-4">
+				<Cell title="EXP at Each Level">
+					<LevelExpTable {rarity} />
+				</Cell>
+			</div>
+		</details>
 	</Row>
 	<Row>
 		<Cell title="Final">
